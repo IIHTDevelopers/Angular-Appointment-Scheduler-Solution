@@ -1,0 +1,45 @@
+<h1>Appointment Scheduler</h1>
+
+<div>
+    <h3>Add Appointment</h3>
+    <form (submit)="addAppointment()">
+        <input type="text" name="name" placeholder="Doctor Name" [(ngModel)]="newAppointment.name">
+        <input type="date" name="date" placeholder="Date" [(ngModel)]="newAppointment.date">
+        <input type="time" name="time" placeholder="Time" [(ngModel)]="newAppointment.time">
+        <input type="text" name="description" placeholder="Description" [(ngModel)]="newAppointment.description">
+        <button type="submit">Add Appointment</button>
+    </form>
+</div>
+
+<div>
+    <h3>Search Appointments</h3>
+    <input type="text" placeholder="Search Appointments" [(ngModel)]="searchKeyword">
+</div>
+
+<div>
+    <h3>List of Appointments</h3>
+    <ul>
+        <li *ngFor="let appointment of filteredAppointments">
+            <div>
+                <p>Name: {{ appointment.name }}</p>
+                <p>Date: {{ appointment.date }}</p>
+                <p>Time: {{ appointment.time }}</p>
+                <p>Description: {{ appointment.description }}</p>
+                <button (click)="editAppointment(appointment)">Edit</button>
+                <button (click)="deleteAppointment(appointment)">Delete</button>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div *ngIf="isEditing">
+    <h3>Edit Appointment</h3>
+    <form (submit)="saveEditedAppointment()">
+        <input type="text" name="name" placeholder="Doctor Name" [(ngModel)]="newAppointment.name">
+        <input type="date" name="date" placeholder="Date" [(ngModel)]="editedAppointment.date">
+        <input type="time" name="time" placeholder="Time" [(ngModel)]="editedAppointment.time">
+        <input type="text" name="description" placeholder="Description" [(ngModel)]="editedAppointment.description">
+        <button type="submit">Save</button>
+        <button type="button" (click)="cancelEdit()">Cancel</button>
+    </form>
+</div>
