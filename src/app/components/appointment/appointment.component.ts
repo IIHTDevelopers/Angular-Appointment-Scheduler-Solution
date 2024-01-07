@@ -20,8 +20,6 @@ export class AppointmentComponent {
   isEditing = false;
   searchKeyword = '';
 
-  constructor() { }
-
   addAppointment(): void {
     this.newAppointment.id = this.appointments.length + 1;
     this.appointments.push({ ...this.newAppointment });
